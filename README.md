@@ -1,10 +1,18 @@
 # ALDL Logger
 
-A Python tool for logging data from GM's Assembly Line Diagnostic Link (ALDL) interface. This tool is designed to work with an FTDI FT232R-based ALDL cable (like those from [aldlcable.com](http://aldlcable.com/)).
+A Python tool for logging 160 baud data from GM's [Assembly Line Diagnostic Link](https://en.wikipedia.org/wiki/ALDL) interface. This tool is designed to work with an FTDI FT232R-based ALDL cable (like those from [aldlcable.com](http://aldlcable.com/)).
+
+I bought a [Howell TBI kit](https://howellefi.com/product/tbi-kit-1981-86-cj-4-2l-emissions-legal/) for my 88 Jeep YJ which included a GM 1227747 ECU. This pre-dates OBD2 and includes an ALDL 12-pin interface that transmits serial-ish data at 160 baud. 
+
+Both the 160 baud rate and the signaling protocol is somewhat non-standard, so the best way to read this seems to be to run the port at 10x speed - 1600 baud - and then sample the center bit to read each bit of the ALDL stream. Thanks to Tech Edge's excellent write up of this for the explainer (https://www.techedge.com.au/vehicle/aldl160/160serial.htm).
+
+Most information (and programs to read or decode it) seems to have disappeared from the Internet at this point, so hopefully folks find this useful. 
+
+See my [aldl-webusb](https://github.com/alexlinde/aldl-webusb) project if you want a way to visualize this. 
 
 ## Features
 
-- Reads ALDL data at 160 baud
+- Reads ALDL data at 160 baud using an FT232R-based serial cable
 - Captures complete ALDL frames (20 bytes after sync) and logs in JSON format
 - Compatible with FTDI FT232R-based ALDL cables
 
